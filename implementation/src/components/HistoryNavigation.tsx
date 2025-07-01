@@ -9,8 +9,8 @@ interface HistoryNavigationProps {
 
 const HistoryNavigation: React.FC<HistoryNavigationProps> = ({ onPrev, onNext, canPrev, canNext }) => (
   <div className="history-navigation">
-    <button onClick={onPrev} disabled={!canPrev}>&lt; Prev</button>
-    <button onClick={onNext} disabled={!canNext}>Next &gt;</button>
+    <button onClick={onPrev} disabled={!canPrev} aria-label="Previous day">&lt; Prev</button>
+    <button onClick={onNext} disabled={!canNext} aria-label="Next day">Next &gt;</button>
   </div>
 );
 

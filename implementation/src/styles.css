@@ -1,3 +1,23 @@
+.status-message {
+  margin: 0.5rem 0 1rem 0;
+  padding: 0.5rem 1rem;
+  background: #eaf6e3;
+  color: #256029;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: opacity 0.3s;
+}
+.predefined-buttons button:focus,
+.custom-input button:focus,
+.history-navigation button:focus,
+.threshold-input button:focus,
+.custom-input input:focus,
+.threshold-input input:focus {
+  outline: 2px solid #0077ff;
+  outline-offset: 2px;
+}
 body {
   font-family: Arial, sans-serif;
   background: #f4f8fb;
@@ -11,6 +31,33 @@ body {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   padding: 2rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 500px) {
+  .layout-container {
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+  }
+  .bar-chart {
+    height: 80px;
+    padding: 0.25rem;
+  }
+  .predefined-buttons button,
+  .custom-input button,
+  .history-navigation button,
+  .threshold-input button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+  }
+  .custom-input input,
+  .threshold-input input {
+    width: 80px;
+    font-size: 0.9rem;
+  }
 }
 .predefined-buttons button,
 .custom-input button,
@@ -66,4 +113,30 @@ body {
   background: #0077ff;
   border-radius: 4px 4px 0 0;
   transition: height 0.3s;
+}
+
+.threshold-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.threshold-input input {
+  width: 120px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.threshold-input button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #0077ff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.threshold-input button:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
 }
