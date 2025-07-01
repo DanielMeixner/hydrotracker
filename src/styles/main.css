@@ -1,0 +1,56 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: #f6fafd;
+  color: #222;
+}
+.app-layout {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 2rem;
+}
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.intake-buttons button,
+form button {
+  margin: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+.today-total {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 120px;
+  margin: 1.5rem 0 0.5rem 0;
+  gap: 4px;
+}
+.bar-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bar {
+  width: 20px;
+  background: #4fc3f7;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.2s;
+}
+.bar-label {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+.history-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
