@@ -20,3 +20,4 @@
 ### History & Visualization
 - A daily bar chart shows water intake for the last 10 days.
 - Users can navigate to previous 10-day periods to view older data.
+  
