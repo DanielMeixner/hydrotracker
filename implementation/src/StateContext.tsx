@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
 // State structure
 type IntakeEntry = number;
@@ -15,12 +15,23 @@ type Action =
   | { type: 'NEXT_DAY' }
   | { type: 'SET_THRESHOLD'; threshold: number };
 
-const initialState: State = {
-  history: [[]],
-  currentDay: 0,
-  threshold: 2000,
-  window: 7,
-};
+
+function loadState(): State {
+  try {
+    const data = localStorage.getItem('hydrotracker-state');
+    if (data) {
+      return JSON.parse(data);
+    }
+  } catch {}
+  return {
+    history: [[]],
+    currentDay: 0,
+    threshold: 2000,
+    window: 7,
+  };
+}
+
+const initialState: State = loadState();
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -56,6 +67,9 @@ const StateContext = createContext<{
 
 export const StateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    localStorage.setItem('hydrotracker-state', JSON.stringify(state));
+  }, [state]);
   return (
     <StateContext.Provider value={{ state, dispatch }}>
       {children}

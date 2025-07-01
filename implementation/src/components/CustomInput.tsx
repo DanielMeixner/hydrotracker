@@ -22,8 +22,9 @@ const CustomInput: React.FC<CustomInputProps> = ({ onAdd }) => {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="Custom amount (ml)"
+        aria-label="Custom amount in milliliters"
       />
-      <button onClick={handleAdd}>Add</button>
+      <button onClick={handleAdd} aria-label="Add custom amount">Add</button>
     </div>
   );
 };
