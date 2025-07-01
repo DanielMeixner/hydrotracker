@@ -6,7 +6,7 @@ import TotalAndThreshold from './components/TotalAndThreshold';
 import ThresholdInput from './components/ThresholdInput';
 import BarChart from './components/BarChart';
 import HistoryNavigation from './components/HistoryNavigation';
-import { useAppState } from './StateContext';
+import { useAppState, DEMO_MODE } from './StateContext';
 
 const App: React.FC = () => {
   const { state, dispatch } = useAppState();
@@ -40,6 +40,11 @@ const App: React.FC = () => {
 
   return (
     <Layout>
+      {DEMO_MODE && (
+        <div style={{ background: '#ffecb3', color: '#b26a00', padding: 8, textAlign: 'center', fontWeight: 'bold' }}>
+          Demo Mode Active – Data is not saved
+        </div>
+      )}
       <h1>HydroTracker</h1>
       <TotalAndThreshold total={todayTotal} threshold={threshold} />
       {status && <div className="status-message" aria-live="polite">{status}</div>}

@@ -1,5 +1,13 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
+// Allow demo mode injection
+export let DEMO_MODE = false;
+export let DEMO_INITIAL_STATE: State | undefined = undefined;
+export function setDemoMode(state: State) {
+  DEMO_MODE = true;
+  DEMO_INITIAL_STATE = state;
+}
+
 // State structure
 type IntakeEntry = number;
 interface State {
@@ -17,6 +25,9 @@ type Action =
 
 
 function loadState(): State {
+  if (DEMO_MODE && DEMO_INITIAL_STATE) {
+    return DEMO_INITIAL_STATE;
+  }
   try {
     const data = localStorage.getItem('hydrotracker-state');
     if (data) {
@@ -68,7 +79,9 @@ const StateContext = createContext<{
 export const StateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
-    localStorage.setItem('hydrotracker-state', JSON.stringify(state));
+    if (!DEMO_MODE) {
+      localStorage.setItem('hydrotracker-state', JSON.stringify(state));
+    }
   }, [state]);
   return (
     <StateContext.Provider value={{ state, dispatch }}>

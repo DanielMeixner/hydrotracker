@@ -22,9 +22,13 @@ describe('HydroTracker App', () => {
         <App />
       </StateProvider>
     );
-    const button = screen.getByText('200 ml');
+    // Find the button by its accessible name
+    const button = screen.getByRole('button', { name: /200 milliliters/i });
     fireEvent.click(button);
-    expect(screen.getByText(/200 ml/)).toBeInTheDocument();
+    // Check for the status message
+    expect(screen.getByText(/Added 200 ml/)).toBeInTheDocument();
+    // Optionally, check that the total updates (Today: ...)
+    expect(screen.getByText(/Today:/i).parentElement).toHaveTextContent(/200 ml/);
   });
 
   it('logs intake via custom input', () => {
@@ -35,7 +39,10 @@ describe('HydroTracker App', () => {
     );
     const input = screen.getByPlaceholderText(/Custom amount/i);
     fireEvent.change(input, { target: { value: '150' } });
-    fireEvent.click(screen.getByText(/Add/i));
-    expect(screen.getByText(/150 ml/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /add custom amount/i }));
+    // Check for the status message
+    expect(screen.getByText(/Added 150 ml/)).toBeInTheDocument();
+    // Optionally, check that the total updates (Today: ...)
+    expect(screen.getByText(/Today:/i).parentElement).toHaveTextContent(/150 ml/);
   });
 });
