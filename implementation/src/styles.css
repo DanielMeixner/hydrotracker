@@ -41,6 +41,16 @@ body {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
+.threshold-status.under {
+  color: #0077ff;
+}
+.threshold-status.near {
+  color: #ff9800;
+}
+.threshold-status.over {
+  color: #e53935;
+  font-weight: bold;
+}
 .bar-chart {
   display: flex;
   align-items: flex-end;
