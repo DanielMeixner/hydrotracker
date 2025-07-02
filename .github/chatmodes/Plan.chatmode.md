@@ -18,4 +18,4 @@ When you're done with planning, break down your plan into GitHub issues that you
 For each GitHub issue, include:
 - A checklist of step-by-step tasks required to complete the issue.
 - A task to ensure the README file is updated as needed.
-- A task to ensure the pull request for the issue contains very detailed instructions for the reviewer on how to review the changes.
+- A task to ensure the pull request for the issue contains very detailed instructions for the reviewer on how to review the changes and on how to run the application and to test the feature or refactoring task.
