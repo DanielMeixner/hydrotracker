@@ -10,9 +10,17 @@ function getDateString(date: Date) {
   return date.toISOString().split('T')[0];
 }
 
-export const DEMO_HISTORY = Array.from({ length: 10 }, (_, i) => {
+// Generate 30 days of demo data (today and 29 previous days)
+export const DEMO_HISTORY = Array.from({ length: 30 }, (_, i) => {
   // Each day is an array of intakes (ml)
-  return [250 + i * 5, 500 + i * 3, 330 + i * 2, 400 + i * 4];
+  // Add some variation for realism
+  const base = 200 + (i % 5) * 50;
+  return [
+    base + Math.floor(Math.random() * 40),
+    base + 100 + Math.floor(Math.random() * 40),
+    base + 200 + Math.floor(Math.random() * 40),
+    base + 300 + Math.floor(Math.random() * 40)
+  ];
 }).reverse();
 
 // For compatibility with StateContext

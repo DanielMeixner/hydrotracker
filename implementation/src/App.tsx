@@ -45,6 +45,20 @@ const App: React.FC = () => {
           Demo Mode Active – Data is not saved
         </div>
       )}
+      {!DEMO_MODE && (
+        <div style={{ textAlign: 'right', margin: '8px 0' }}>
+          <button
+            onClick={() => {
+              const url = new URL(globalThis.window.location.href);
+              url.searchParams.set('demo', '1');
+              globalThis.window.location.href = url.toString();
+            }}
+            style={{ padding: '6px 16px', background: '#e0e0e0', border: '1px solid #bbb', borderRadius: 4, cursor: 'pointer' }}
+          >
+            Switch to Demo Mode
+          </button>
+        </div>
+      )}
       <h1>HydroTracker</h1>
       <TotalAndThreshold total={todayTotal} threshold={threshold} />
       {status && <div className="status-message" aria-live="polite">{status}</div>}
