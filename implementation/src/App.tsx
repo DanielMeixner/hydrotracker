@@ -6,18 +6,19 @@ import TotalAndThreshold from './components/TotalAndThreshold';
 import ThresholdInput from './components/ThresholdInput';
 import BarChart from './components/BarChart';
 import HistoryNavigation from './components/HistoryNavigation';
+import DemoModeIndicator from './components/DemoModeIndicator';
 import { useAppState } from './StateContext';
 
 const App: React.FC = () => {
   const { state, dispatch } = useAppState();
-  const { history, currentDay, threshold, window } = state;
+  const { history, currentDay, threshold, window, isDemo } = state;
   const [status, setStatus] = useState<string | null>(null);
 
   const todayTotal = history[currentDay]?.reduce((a, b) => a + b, 0) || 0;
 
   const handleAdd = (amount: number) => {
     dispatch({ type: 'ADD_INTAKE', amount });
-    setStatus(`Added ${amount} ml`);
+    setStatus(`Added ${amount} ml${isDemo ? ' (demo mode)' : ''}`);
     setTimeout(() => setStatus(null), 1200);
   };
 
@@ -34,13 +35,30 @@ const App: React.FC = () => {
 
   const handleSetThreshold = (value: number) => {
     dispatch({ type: 'SET_THRESHOLD', threshold: value });
-    setStatus(`Threshold set to ${value} ml`);
+    setStatus(`Threshold set to ${value} ml${isDemo ? ' (demo mode)' : ''}`);
+    setTimeout(() => setStatus(null), 1200);
+  };
+
+  const handleEnterDemo = () => {
+    dispatch({ type: 'ENTER_DEMO' });
+    setStatus('Entered demo mode');
+    setTimeout(() => setStatus(null), 1200);
+  };
+
+  const handleExitDemo = () => {
+    dispatch({ type: 'EXIT_DEMO' });
+    setStatus('Exited demo mode');
     setTimeout(() => setStatus(null), 1200);
   };
 
   return (
     <Layout>
       <h1>HydroTracker</h1>
+      <DemoModeIndicator 
+        isDemo={isDemo}
+        onEnterDemo={handleEnterDemo}
+        onExitDemo={handleExitDemo}
+      />
       <TotalAndThreshold total={todayTotal} threshold={threshold} />
       {status && <div className="status-message" aria-live="polite">{status}</div>}
       <PredefinedButtons onClick={handleAdd} />

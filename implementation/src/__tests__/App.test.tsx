@@ -24,7 +24,7 @@ describe('HydroTracker App', () => {
     );
     const button = screen.getByText('200 ml');
     fireEvent.click(button);
-    expect(screen.getByText(/200 ml/)).toBeInTheDocument();
+    expect(screen.getByText(/Added 200 ml/)).toBeInTheDocument();
   });
 
   it('logs intake via custom input', () => {
@@ -36,6 +36,6 @@ describe('HydroTracker App', () => {
     const input = screen.getByPlaceholderText(/Custom amount/i);
     fireEvent.change(input, { target: { value: '150' } });
     fireEvent.click(screen.getByText(/Add/i));
-    expect(screen.getByText(/150 ml/)).toBeInTheDocument();
+    expect(screen.getByText(/Added 150 ml/)).toBeInTheDocument();
   });
 });

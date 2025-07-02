@@ -9,6 +9,72 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   transition: opacity 0.3s;
 }
+
+/* Demo Mode Styles */
+.demo-mode-indicator {
+  margin: 0.5rem 0 1rem 0;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.demo-badge {
+  font-weight: bold;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.demo-text {
+  flex: 1;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.demo-exit-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.demo-exit-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.demo-mode-controls {
+  text-align: right;
+  margin: 0.5rem 0;
+}
+
+.demo-enter-button {
+  background: #f0f7ff;
+  color: #0077ff;
+  border: 1px solid #0077ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.demo-enter-button:hover {
+  background: #0077ff;
+  color: white;
+}
 .predefined-buttons button:focus,
 .custom-input button:focus,
 .history-navigation button:focus,
@@ -57,6 +123,14 @@ body {
   .threshold-input input {
     width: 80px;
     font-size: 0.9rem;
+  }
+  .demo-mode-indicator {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .demo-text {
+    font-size: 0.85rem;
   }
 }
 .predefined-buttons button,
